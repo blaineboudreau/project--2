@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+   <header>
+    <h1>Edit this Movie</h1>
+   </header>
+
+    <form action="/movies/<%=movie.id%>?_method=PUT" method="POST">
+     <input type="text" name="title"  value="<%=movie.title%>">
+     <input type="text" name="director" value="<%=movie.qty%>">
+      <input type="text" name="description" value="<%=movie.description%>">
+       <input type="text" name="img" value="<%=movie.img%>">
+       <input type="text" name="stars" value="<%=product.stars%>">
+
+     <button>SUBMIT</button>
+    </form>
+
+    <h1>Delete this Movie</h1>
+
+    <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
+      <button>DELETE</button>
+    </form>
+
+  </body>
+</html>
