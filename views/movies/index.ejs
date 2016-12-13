@@ -2,9 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Movie App</title>
   </head>
   <body>
-    <h1>Movies Index Page</h1>
-  </body>
+   <section>
+  <h1>Movies Index Page</h1>
+   <ul>
+    <li>
+      <a href="movies/new">Add a Movie</a>
+    </li>
+    <li>
+    <a href="/users">User Movie List</a>
+    </li>
+   </ul>
+ </section>
+
+ <section>
+   <h2>Movies Added</h2>
+   <% for(var i = 0; i<movie.length; i++) { %>
+     <a href="/movies/<%=movie[i]._id%>"><img  src="<%=movie[i].img%>"/></a>
+   <ul>
+     <li><p>Title:
+     <b><%=movie[i].title%></b></p></li>
+     <li><p>Stars: 
+     <b><%=movie[i].stars%></b></p></li>
+  </ul>
+   <% } %>
+ </section>
+ </body>
 </html>

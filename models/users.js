@@ -10,6 +10,7 @@ var Schema = mongoose.Schema;
 // Invoke the constructor making Model for User
 var userSchema = new Schema({
   username: { type: String, required: true },
+  password: { type: String, required: true },
   movieList: [Movie.schema]
 });
 
