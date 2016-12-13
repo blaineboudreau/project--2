@@ -27,18 +27,35 @@ var moviesController = require('./controllers/moviesController');
 var usersController = require('./controllers/usersController');
 
 // Middleware
+app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(session({}));
+app.use(session({
+      secret: "secretsession",
+      resave: false,
+      saveUninitialized: false
+}));
+
 
 app.use('/movies', moviesController);
 app.use('/users', usersController);
 
 // Root route
 app.get('/', function(req, res) {
-  res.redirect("/movies");
+  res.redirect("/login");
 });
+
+app.get('/login', function(req, res) {
+  res.render("login.ejs", {
+    currentUser: req.session.currentuser
+  });
+});
+
+// // Register
+// app.get('/login', function(req, res) {
+//   res.render('users/login.ejs')
+// });
 
 // Listerner
 app.listen(port, function() {
