@@ -41,9 +41,7 @@ app.use(session({
 app.use('/movies', isLoggedIn, moviesController);
 app.use('/users', usersController);
 
-// ******* using thoms code for encrypted password******
-// CUSTOM MIDDLEWARE
-// Check if a user is logged in (used for '/movies..' route)
+// ******* cite using Thom's code for encrypted password******
 function isLoggedIn(req, res, next) {
   if (req.session.loggedInUser) {
     return next();
@@ -57,17 +55,8 @@ app.get('/', function(req, res) {
   res.redirect("/users");
 });
 
-// // LOGOUT
-// // GET /logout
-// app.get('/logout', function(req, res) {
-//   req.session.destroy(function(err) {
-//     if (err) {
-//       console.log('error destroying session: ', req.session);
-//     } else {
-//       res.redirect('/signup');
-//     }
-//   });
-// });
+//  Logout
+
 
 // Listerner
 app.listen(port, function() {

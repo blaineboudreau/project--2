@@ -15,12 +15,8 @@ var userSchema = new Schema({
   movieList: [Movie.schema]
 });
 
-// Functionality for storing password
-// PASSWORD HASHING AND AUTHENTICATION
-
-// Before each save of the user, check if the password has been added or modified,
-// and if it has, hash the provided password and store it.
-// Used at signup / creating a user.
+// Functionality for storing password and authentication
+// cite Thom's movie app/comment lines
 userSchema.pre('save', function(next) {
   if (!this.isModified('password')) { return next(); }
   var hashedPassword = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
@@ -28,8 +24,6 @@ userSchema.pre('save', function(next) {
   next();
 });
 
-// Method for comparing the provided password with the stored hashed password.
-// Used at login / authenticating a user.
 userSchema.methods.authenticate = function(password) {
   return bcrypt.compareSync(password, this.password);
 }

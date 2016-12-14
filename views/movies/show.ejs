@@ -5,20 +5,18 @@
     <title>Movie App</title>
   </head>
   <body>
-
    <header>
-   <h1>Movies Show Page</h1>
-    <ul>
+    <h1>Movies Show Page</h1>
+     <ul>
       <li>
         <a href="/movies">Home Page</a>
       </li>
       <li>
         <a href="/users">Log In Page</a>
       </li>
-    </ul>
+     </ul>
    </header>
-
-  <section>
+   <section>
     <h2>Movie Info</h2>
     <p>title:
     <b><%=movie.title%></b></p>
@@ -30,16 +28,15 @@
     <p>stars:
     <b><%=movie.stars%></b></p>
   </section>
-
   <section>
- <h2>Delete Movie</h2>
-  <ul>
-    <li>
+   <h2>Delete Movie</h2>
+    <ul>
+     <li>
       <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
-        <button>DELETE</button>
+       <button>DELETE</button>
       </form>
-    </li>
-  </ul>
+     </li>
+    </ul>
  <h2>Edit Movie</h2>
   <ul>
     <li>
@@ -49,6 +46,5 @@
     </li>
   </ul>
 </section>
-
   </body>
 </html>

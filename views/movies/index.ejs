@@ -10,26 +10,25 @@
   </head>
   <body>
     <div id="container">
-   <section>
-  <h1>Movies Index Page</h1>
-   <ul>
-    <li>
-      <a href="movies/new">Add a Movie</a>
-    </li>
-    <li>
-    <a href="/users">Log In Page</a>
-    </li>
-   </ul>
- </section>
-
- <section>
-   <h2>Movies Added</h2>
-   <div id="movies-container"
-   <% for(var i = 0; i<movie.length; i++) { %>
-    <div class="movies-images"><a href="/movies/<%=movie[i]._id%>"><img  src="<%=movie[i].img%>"/></a></div>
-   <% } %>
- </div>
- </section>
- </div>
+    <section>
+    <h1>Movies Index Page</h1>
+     <ul>
+      <li>
+       <a href="movies/new">Add a Movie</a>
+      </li>
+      <li>
+       <a href="/users">Log In Page</a>
+      </li>
+     </ul>
+    </section>
+    <section>
+    <h2>Movies Added</h2>
+     <div id="movies-container"
+      <% for(var i = 0; i<movie.length; i++) { %>
+       <div class="movies-images"><a href="/movies/<%=movie[i]._id%>"><img  src="<%=movie[i].img%>"/></a></div>
+      <% } %>
+      </div>
+    </section>
+     </div>
  </body>
 </html>

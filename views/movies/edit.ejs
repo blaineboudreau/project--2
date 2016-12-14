@@ -5,11 +5,9 @@
     <title></title>
   </head>
   <body>
-
    <header>
     <h1>Edit this Movie</h1>
    </header>
-
     <form action="/movies/<%=movie.id%>?_method=PUT" method="POST">
      <input type="text" name="title"  value="<%=movie.title%>">
      <input type="text" name="director" value="<%=movie.qty%>">
@@ -17,15 +15,10 @@
      <input type="text" name="img" value="<%=movie.img%>">
      <input type="text" name="stars" value="<%=movie.stars%>">
      <input type="submit" value="Edit"/>
-     <!-- <button>SUBMIT</button> -->
-    </form>
-
+   </form>
     <h1>Delete this Movie</h1>
-
     <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
       <input type="submit" value="Delete"/>
-      <!-- <button>DELETE</button> -->
     </form>
-
   </body>
 </html>

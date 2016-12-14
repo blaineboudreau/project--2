@@ -9,8 +9,8 @@ var User = require('../models/users');
 movies.get('/', function(req, res) {
  Movie.find(function(err, movie) {
   res.render('movies/index.ejs', {
-     movie: movie
-  });
+   movie: movie
+   });
  });
 });
 
@@ -20,81 +20,60 @@ movies.get('/new', function(req, res) {
   res.render('movies/new.ejs');
 });
 
-// // Create route (POST)
-// movies.post('/', function(req, res) {
-//   Movie.create(req.body,
-//     function(err, movie) {
-//      if (err) { console.log(err) }
-//     res.redirect('/movies');
-//   });
-// });
 
-
-// CREATE NEW MOVIE
-// POST /movies
+// Create route (POST)
 movies.post('/', function(req, res) {
-  Movie.create(req.body, function(err, createdMovie) {
-    User.findById(req.session.loggedInUser.id, function(err, foundUser) {
-      foundUser.movieList.push(createdMovie);
-      foundUser.save(function(err, savedUser) {
-        res.send({ movieId: createdMovie.id });
-      }); // end foundUser.save()
-    }); // end User.findByID()
-  }); // end Movie.create()
-}); // end create route
+ Movie.create(req.body, function(err, createdMovie) {
+  User.findById(req.session.loggedInUser.id, function(err, foundUser) {
+   foundUser.movieList.push(createdMovie);
+    foundUser.save(function(err, savedUser) {
+     res.send({ movieId: createdMovie.id });
+    });
+  });
+ });
+});
 
 
 // Edit route (GET)
 movies.get('/:id/edit',
  function(req, res) {
- Movie.findById(req.params.id,
-  function(err, movie) {
- res.render('movies/edit.ejs', {
-  movie:movie
-  });
+  Movie.findById(req.params.id,
+   function(err, movie) {
+    res.render('movies/edit.ejs', {
+     movie:movie
+    });
+   });
  });
-});
+
 
 // Update route (PUT)
 movies.put('/:id', function(req, res) {
-  Movie.findByIdAndUpdate(req.params.id, req.body,
-    function(err, movie) {
-    res.redirect('/movies/'+req.params.id);
+ Movie.findByIdAndUpdate(req.params.id, req.body,
+  function(err, movie) {
+   res.redirect('/movies/'+req.params.id);
   });
 });
 
-// // Show route (GET)
-// movies.get('/:id', function(req, res) {
-//   Movie.findById(req.params.id,
-//     function(err, movie) {
-//     res.render('movies/show.ejs', {
-//       movie: movie
-//     });
-//   });
-// });
 
-// SHOW A USER'S MOVIE
-// GET /movies/:movie_id
+// Show route (GET)
 movies.get('/:movie_id', function(req, res) {
-  Movie.findById(req.params.movie_id, function(err, foundMovie) {
-    if (err) {
-      res.redirect('/movies/new');
-    } else {
-      res.render('movies/show.ejs', { movie: foundMovie });
-    }
-  });
+ Movie.findById(req.params.movie_id, function(err, foundMovie) {
+  if (err) {
+   res.redirect('/movies/new');
+  } else {
+   res.render('movies/show.ejs', { movie: foundMovie });
+  }
+ });
 });
+
 
 // Delete route (DELETE)
 movies.delete('/:id', function(req, res) {
-  Movie.findByIdAndRemove(req.params.id,
-    function(err, movie) {
-    res.redirect('/movies');
+ Movie.findByIdAndRemove(req.params.id,
+  function(err, movie) {
+   res.redirect('/movies');
   });
 });
-
-
-
 
 
 module.exports = movies;
