@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 // Constructor Model (Schema)
 var movieSchema = new Schema({
-  title: { type: String, required: true },
+  title: String,
   director: String,
   description: String,
   stars: { type: Number, min: 0, max: 5 },

@@ -5,40 +5,51 @@ var users = express.Router();
 // Models
 var User = require('../models/users');
 
-// Index route (GET)
+//Index route (GET)
 // users.get('/', function(req, res) {
 //   User.find(function(err, users) {
 //     res.render('users/login.ejs', {
 //       users: users
 //     });
 //   });
-// });// end Index
+// });// end Inde
 
-// Create route (POST) creating user
-// users.post('/', function(req, res) {
-//     User.create(req.body, function(err, createdUser) {
-//       req.session.loggedInUser = { name: createdUser.name, id: createdUser.id }
-//       req.session.currentUser = createdUser.name;
-//         res.redirect('/movies/show.ejs');
-//     });
-// }); // end create user
+users.get('/', function(req, res){
+    res.render('users/login.ejs');
+});
 
-// (POST)
+
+
 users.post('/', function(req, res) {
-  User.findOne({ username: req.body.username}, function(err, foundUser) {
-    if (req.body.password == foundUser.password) {
-    req.session.currentUser = foundUser;
-    res.redirect('/movies/show.ejs');
-  } else {
-    res.send('incorrect password')
-  }
- });
-}); // end login route
-
-users.post('/', function(req, res){
-    User.create(req.body, function(err, createdUser){
-        res.redirect('/movies/show.ejs');
+    User.create(req.body, function(err, newUser) {
+      if (err) {
+        console.log('user create error: ', err);
+        res.redirect('/');
+      } else {
+      req.session.loggedInUser = { name: newUser.name, id: newUser.id }
+      req.session.currentUser = newUser.name;
+      }
+        res.redirect('/movies');
     });
 });
+
+users.post('/login', function(req, res) {
+    User.findOne({ name: req.body.name }, function(err, foundUser) {
+      if (err) {
+        console.log('user login error: ', err);
+      }
+      if (!foundUser) {
+        res.redirect('/');
+      } else if (foundUser.authenticate(req.body.password)) {
+      req.session.loggedInUser = { name: foundUser.name, id: foundUser.id }
+      req.session.currentUser = foundUser.name;
+      res.redirect('/movies/new');
+        } else {
+            res.send('wrong password');
+        }
+    });
+});
+
+
 // Exporting router
 module.exports = users;
