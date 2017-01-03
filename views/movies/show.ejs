@@ -3,9 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Movie App</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-   <header>
+   <!-- <div id="container"> -->
+    <header>
     <h1>Movies Show Page</h1>
      <ul>
       <li>
@@ -15,21 +20,21 @@
         <a href="/users">Log In Page</a>
       </li>
      </ul>
-   </header>
-   <section>
-    <h2>Movie Info</h2>
-    <p>title:
-    <b><%=movie.title%></b></p>
-    <p>director:
-    <b><%=movie.director%></b></p>
-    <p>description:
-    <b><%=movie.description%></b></p>
-    <img src="<%=movie.img%>"/>
-    <p>stars:
-    <b><%=movie.stars%></b></p>
-  </section>
-  <section>
-   <h2>Delete Movie</h2>
+    </header>
+    <section>
+     <h2>Movie Info</h2>
+     <p>title:
+     <b><%=movie.title%></b></p>
+     <p>director:
+     <b><%=movie.director%></b></p>
+     <p>description:
+     <b><%=movie.description%></b></p>
+     <img src="<%=movie.img%>"/>
+     <p>stars:
+     <b><%=movie.stars%></b></p>
+    </section>
+    <section>
+    <h2>Delete Movie</h2>
     <ul>
      <li>
       <form action="/movies/<%=movie.id%>?_method=DELETE" method="POST">
@@ -37,14 +42,15 @@
       </form>
      </li>
     </ul>
- <h2>Edit Movie</h2>
-  <ul>
+   <h2>Edit Movie</h2>
+   <ul>
     <li>
      <button>
       <a href="/movies/<%=movie._id%>/edit">Edit</a>
      </button>
     </li>
-  </ul>
-</section>
-  </body>
+   </ul>
+  </section>
+ <!-- </div> -->
+</body>
 </html>

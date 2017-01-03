@@ -22,15 +22,24 @@ movies.get('/new', function(req, res) {
 
 
 // Create route (POST)
+// movies.post('/', function(req, res) {
+//  Movie.create(req.body, function(err, createdMovie) {
+//   User.findById(req.session.loggedInUser.id, function(err, foundUser) {
+//    foundUser.movieList.push(createdMovie);
+//     foundUser.save(function(err, savedUser) {
+//      res.send({ movieId: createdMovie.id });
+//     });
+//   });
+//  });
+// });
+
+// // Create route (POST)
 movies.post('/', function(req, res) {
- Movie.create(req.body, function(err, createdMovie) {
-  User.findById(req.session.loggedInUser.id, function(err, foundUser) {
-   foundUser.movieList.push(createdMovie);
-    foundUser.save(function(err, savedUser) {
-     res.send({ movieId: createdMovie.id });
-    });
+  Movie.create(req.body,
+    function(err, movie) {
+     if (err) { console.log(err) }
+    res.redirect('/movies');
   });
- });
 });
 
 
@@ -56,14 +65,24 @@ movies.put('/:id', function(req, res) {
 
 
 // Show route (GET)
-movies.get('/:movie_id', function(req, res) {
- Movie.findById(req.params.movie_id, function(err, foundMovie) {
-  if (err) {
-   res.redirect('/movies/new');
-  } else {
-   res.render('movies/show.ejs', { movie: foundMovie });
-  }
- });
+// movies.get('/:movie_id', function(req, res) {
+//  Movie.findById(req.params.movie_id, function(err, foundMovie) {
+//   if (err) {
+//    res.redirect('/movies/new');
+//   } else {
+//    res.render('movies/show.ejs', { movie: foundMovie });
+//   }
+//  });
+// });
+
+// Show route (GET)
+movies.get('/:id', function(req, res) {
+  Movie.findById(req.params.id,
+    function(err, movie) {
+    res.render('movies/show.ejs', {
+      movie: movie
+    });
+  });
 });
 
 

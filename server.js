@@ -1,4 +1,3 @@
-
 // Dependencies
 var express = require('express');
 var app = express();
@@ -58,7 +57,7 @@ app.get('/', function(req, res) {
 //  Logout
 
 
-// Listerner
+// Listener
 app.listen(port, function() {
   console.log("Running on port");
 });
